@@ -25,8 +25,6 @@ class StockModel(BaseModel):
 		self.sellVolume = 0						# 内盘
 		self.amountRatio = 0					# 量比
 		self.entrustRatio = 0					# 委比
-		self.totalFlowIn = 0					# 总流入
-		self.totalFlowOut = 0					# 总流出
 		self.superFlowIn = 0					# 超大单流入
 		self.superFlowOut  = 0					# 超大单流出
 		self.bigFlowIn = 0						# 大单流入

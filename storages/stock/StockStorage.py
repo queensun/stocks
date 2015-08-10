@@ -60,7 +60,7 @@ class StockStorage(BaseStorage):
 			sql = 'insert into stocks_daily(stockId, openPrice, yesterdayClosePrice, curPrice, \
 				averagePrice, high, low, tradeVolume, tradeValue, turnoverRate, marketValue, \
 				circulationValue, pb, pe, buyVolume, sellVolume, amountRatio, entrustRatio, \
-				totalFlowIn, totalFlowOut, bigFlowIn, bigFlowOut, middleFlowIn, middleFlowOut, \
+				superFlowIn, superFlowOut, bigFlowIn, bigFlowOut, middleFlowIn, middleFlowOut, \
 				littleFlowIn, littleFlowOut, updateDate) values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, \
 				%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, "%s")'
 			cursor.execute(sql % (stockModel.stockId, stockModel.openPrice, stockModel.yesterdayClosePrice,
@@ -68,7 +68,7 @@ class StockStorage(BaseStorage):
 				stockModel.tradeVolume, stockModel.tradeValue, stockModel.turnoverRate, stockModel.marketValue,
 				stockModel.circulationValue, stockModel.pb, stockModel.pe, stockModel.buyVolume, 
 				stockModel.sellVolume, stockModel.amountRatio, stockModel.entrustRatio,
-				stockModel.totalFlowIn, stockModel.totalFlowOut, stockModel.bigFlowIn, stockModel.bigFlowOut, 
+				stockModel.superFlowIn, stockModel.superFlowOut, stockModel.bigFlowIn, stockModel.bigFlowOut, 
 				stockModel.middleFlowIn, stockModel.middleFlowOut, stockModel.littleFlowIn, 
 				stockModel.littleFlowOut, stockModel.updateDate))
 			BaseStorage.db.commit()
