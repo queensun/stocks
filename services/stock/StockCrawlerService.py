@@ -28,15 +28,19 @@ class StockCrawlerService(object):
 			for row in rows:
 				matches = pattern.match(row)
 				if matches:
-					stockBaseModel = StockBaseModel(None, matches.group(3), matches.group(2).decode('gbk').encode('utf-8'), matches.group(1))
-					try:
-						StockStorage.saveStockBaseModel(stockBaseModel)
-						logger.info('%s(%s) - new stockCode fetched' % (stockBaseModel.stockName, stockBaseModel.stockCode))
-						StockCrawlerService.fetchStockCategoryRelationsFromInternet(stockBaseModel)
-					except Exception, e:
-						pass
-					finally:
-						pass
+					# 去年基金、证券等非股票代码
+					stockCode = macthes.group(3).decode('gbk')
+					if stockCode.startswith('600') or stockCode.startswith('601') or stockCode.startswith('603') \
+									or stockCode.startswith('002') or stockCode.startswith('300') or stockCode.startswith('000'):
+						stockBaseModel = StockBaseModel(None, matches.group(3), matches.group(2).decode('gbk').encode('utf-8'), matches.group(1))
+						try:
+							StockStorage.saveStockBaseModel(stockBaseModel)
+							logger.info('%s(%s) - new stockCode fetched' % (stockBaseModel.stockName, stockBaseModel.stockCode))
+							StockCrawlerService.fetchStockCategoryRelationsFromInternet(stockBaseModel)
+						except Exception, e:
+							pass
+						finally:
+							pass
 		except urllib2.HTTPError, e:
 			logger.error('%s' % (e))
 		except Exception, e:
